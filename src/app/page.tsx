@@ -1,6 +1,8 @@
+import CreateImage from '@/components/CreateImage';
+
 export default function Home() {
   return (
-   <h1>ds</h1>
+   <CreateImage/>
   );
 }
 
