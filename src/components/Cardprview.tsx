@@ -13,7 +13,7 @@ export default function CardPrview({
     <Card
       isFooterBlurred
       radius="lg"
-      className="border-none fixed top-10 left-10"
+      className="border-none fixed top-10 right-10"
     >
       <Image
         alt="Woman listing to music"

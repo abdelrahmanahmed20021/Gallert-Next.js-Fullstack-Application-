@@ -3,6 +3,9 @@ import "@uploadthing/react/styles.css";
 
 import React, { useRef, useState } from "react";
 
+import axios from "axios";
+
+import { useGState } from "@/app/page";
 import { cn } from "@/utils/cn";
 import { useUploadThing } from "@/utils/useUploadThings";
 import {
@@ -43,13 +46,11 @@ export default function CreateImage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [initState, setState] = useState(initData);
   const photoNameInput = useRef<any>(null);
+  const { setData } = useGState();
   const { startUpload } = useUploadThing("mediaPost", {
     onUploadBegin: (e) => {},
     onClientUploadComplete(res) {
-      setState(initData);
-      setTimeout(() => {
-        setState((prev: any) => ({ ...prev, status: "pennding" }));
-      }, 4000);
+      return res;
     },
     onUploadError(e: any) {
       setState(initData);
@@ -65,12 +66,38 @@ export default function CreateImage() {
     setState((prev: any) => ({ ...prev, img, file }));
   };
 
+  async function uploadFileAndCreateImage() {
+    if (!initState.file) return;
+    try {
+      const uploadData = await startUpload([initState.file]);
+      if (!uploadData) return;
+      const { fileUrl, fileName } = uploadData[0];
+      const { data } = await axios.post(
+        "http://localhost:3000/api/createImage",
+        {
+          src: fileUrl,
+          name: initState.photoName,
+          fileName,
+        }
+      );
+      setData((prev: any) => ({ ...prev, data: [...prev.data, data] }));
+      setState(initData);
+      setState((prev) => ({ ...prev, status: "done" }));
+      setTimeout(() => {
+        setState((prev) => ({ ...prev, status: "pending" }));
+      }, 3000);
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred:", error);
+    }
+  }
+
   const uploadImage = () => {
     if (!initState.file) {
       setState((prev: any) => ({ ...prev, imgValidationState: false }));
       return;
     } else if (!initState.photoName) {
-      setState((prev: any) => ({ ...prev, setValidationState: false }));
+      setState((prev: any) => ({ ...prev, validationState: false }));
 
       if (photoNameInput.current) {
         photoNameInput?.current.focus();
@@ -79,12 +106,12 @@ export default function CreateImage() {
     }
     setState((prev: any) => ({
       ...prev,
-      setValidationState: true,
+      validationState: true,
       loader: true,
     }));
-    startUpload([initState.file]);
-  };
 
+    uploadFileAndCreateImage();
+  };
   return (
     <>
       <Button
@@ -104,9 +131,12 @@ export default function CreateImage() {
                 {initState.img && initState.loader && (
                   <CardPrview src={initState.img} status={true} />
                 )}
-                {status == "done" && (
-                  <Alret message="Photo Uploaded" slug={"successfully"} />
-                )}
+
+                <Alret
+                  status={initState.status}
+                  message="Photo Uploaded"
+                  slug={"successfully"}
+                />
                 <label
                   htmlFor="photoInput"
                   className={cn(
