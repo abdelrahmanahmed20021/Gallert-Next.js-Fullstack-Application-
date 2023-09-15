@@ -1,11 +1,12 @@
 "use client";
 import "@uploadthing/react/styles.css";
 
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import axios from "axios";
+import Image from "next/legacy/image";
 
-import { useGState } from "@/app/page";
+import { GState } from "@/app/page";
 import { cn } from "@/utils/cn";
 import { useUploadThing } from "@/utils/useUploadThings";
 import {
@@ -46,7 +47,7 @@ export default function CreateImage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [initState, setState] = useState(initData);
   const photoNameInput = useRef<any>(null);
-  const { setData } = useGState();
+  const { setData } = useContext(GState);
   const { startUpload } = useUploadThing("mediaPost", {
     onUploadBegin: (e) => {},
     onClientUploadComplete(res) {
@@ -112,6 +113,11 @@ export default function CreateImage() {
 
     uploadFileAndCreateImage();
   };
+
+  const rest = (close: any) => {
+    setState(initData);
+    close();
+  };
   return (
     <>
       <Button
@@ -148,7 +154,7 @@ export default function CreateImage() {
                 >
                   {!initState.img && "Select Photo"}
                   {initState.img && (
-                    <img
+                    <Image
                       src={initState.img}
                       style={{
                         width: "100%",
@@ -187,7 +193,12 @@ export default function CreateImage() {
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => rest(onClose)}
+                  className={cn(initState.loader && "hidden")}
+                >
                   Cancle
                 </Button>
                 <Button

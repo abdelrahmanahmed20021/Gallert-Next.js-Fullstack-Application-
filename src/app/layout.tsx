@@ -1,10 +1,12 @@
-"use client"
-import './globals.css';
+"use client";
+import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
