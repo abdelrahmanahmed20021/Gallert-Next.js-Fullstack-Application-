@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.slick-dots li:not(.slick-active) button::before{
+    color: #fff !important;
+}
+.slick-active{
+    background-color: #fff !important;
+    border-radius: 50%;
+}
