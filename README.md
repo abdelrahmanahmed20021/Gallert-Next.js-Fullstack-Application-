@@ -1,34 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name: Small Gallery - Next.js Fullstack Application
+
+## Overview
+
+This project is a small gallery application built with Next.js as a full-stack application. It leverages Vercel for deployment and GitHub for version control. The primary purpose of this application is to allow users to upload images along with associated bios. It uses the UploadThings API for handling image uploads and Prisma with MongoDB as the database for storing image and bio data. The client-side of the application is built using React with Next.js.
+
+## Features
+
+- User Authentication: Users can sign up and log in to the application to access the gallery.
+- Image Upload: Authenticated users can upload images along with their bio.
+- Image Gallery: Display uploaded images and their associated bios in a gallery view.
+- Bio Editing: Users can edit and update their bio information.
+- User Profile: View user profiles and the images they have uploaded.
+
+## Technologies Used
+
+- **Next.js**: The framework used for building the full-stack application.
+- **Vercel**: Used for deployment and hosting of the application.
+- **GitHub**: Version control and project management.
+- **UploadThings API**: To handle image uploads.
+- **Prisma**: As an Object-Relational Mapping (ORM) tool.
+- **MongoDB**: The database for storing image and bio data.
+- **React**: Used for building the client-side of the application.
 
 ## Getting Started
 
-First, run the development server:
+To get started with this project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the GitHub repository to your local machine:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/your-username/small-gallery-app.git
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Navigate to the project directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   cd small-gallery-app
+   ```
 
-## Learn More
+3. Install the required dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Configure Environment Variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   - Create a `.env.local` file in the root directory.
+   - Define the following environment variables in the `.env.local` file:
 
-## Deploy on Vercel
+     ```
+     NEXT_PUBLIC_UPLOAD_THINGS_API_KEY=your_upload_things_api_key
+     DATABASE_URL=your_mongodb_database_url
+     SESSION_SECRET=your_session_secret
+     ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Replace `your_upload_things_api_key`, `your_mongodb_database_url`, and `your_session_secret` with your own values.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Access the application in your web browser at `http://localhost:3000`.
+
+## Usage
+
+- Sign up for a new account or log in if you already have one.
+- Upload images and provide associated bios.
+- Explore the image gallery and view other users' uploads.
+- Edit and update your bio information in your profile.
+
+## Contributing
+
+If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository on GitHub.
+2. Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name`.
+3. Make your changes and commit them with descriptive messages: `git commit -m "Add feature: your feature name"`.
+4. Push your changes to your forked repository: `git push origin feature/your-feature-name`.
+5. Create a pull request on the main repository.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or need further assistance, you can contact the project maintainer:
+
+- Name: Abdelrahman Ahmed ***(Black Wolf)***
+- Email: [Linkedin](https://www.linkedin.com/in/abdalrhman-ahmed-890243250/)
+
+Thank you for using the Small Gallery application! We hope you enjoy using it and welcome your feedback and contributions.
