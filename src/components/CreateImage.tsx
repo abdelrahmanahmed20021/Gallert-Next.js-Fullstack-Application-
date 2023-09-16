@@ -1,13 +1,17 @@
 "use client";
-import "@uploadthing/react/styles.css";
+import '@uploadthing/react/styles.css';
 
-import React, { useContext, useRef, useState } from "react";
+import React, {
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-import { GState } from "@/app/page";
-import { cn } from "@/utils/cn";
-import { useUploadThing } from "@/utils/useUploadThings";
+import { GState } from '@/app/page';
+import { cn } from '@/utils/cn';
+import { useUploadThing } from '@/utils/useUploadThings';
 import {
   Button,
   Input,
@@ -17,10 +21,10 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
-import Alret from "./Alret";
-import CardPrview from "./Cardprview";
+import Alret from './Alret';
+import CardPrview from './Cardprview';
 
 type initData = {
   img: null | string;
@@ -73,7 +77,7 @@ export default function CreateImage() {
       if (!uploadData) return;
       const { fileUrl, fileName } = uploadData[0];
       const { data } = await axios.post(
-        "http://localhost:3000/api/createImage",
+        "https://gallery-iota-rose.vercel.app/api/createImage",
         {
           src: fileUrl,
           name: initState.photoName,

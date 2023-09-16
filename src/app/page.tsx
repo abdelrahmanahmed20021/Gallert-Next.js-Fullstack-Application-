@@ -1,11 +1,15 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-import CreateImage from "@/components/CreateImage";
-import ImageCard from "@/components/ImageCard";
-import { Spinner } from "@nextui-org/react";
+import CreateImage from '@/components/CreateImage';
+import ImageCard from '@/components/ImageCard';
+import { Spinner } from '@nextui-org/react';
 
 type contextProps = {
   data: {
@@ -27,7 +31,7 @@ export default function Home() {
     const getData = async () => {
       try {
         setData((prev: any) => ({ ...prev, loader: true }));
-        const req = await axios.get("http://localhost:3000/api/getImages");
+        const req = await axios.get("https://gallery-iota-rose.vercel.app/api/getImages");
         const data = req.data;
         setData((prev: any) => ({ data, loader: false }));
       } catch (e: any) {
