@@ -11,6 +11,8 @@ import CreateImage from '@/components/CreateImage';
 import ImageCard from '@/components/ImageCard';
 import { Spinner } from '@nextui-org/react';
 
+import { endPoints } from '../../utils/endPoint';
+
 type contextProps = {
   data: {
     data: [];
@@ -26,12 +28,12 @@ export const GState = createContext<contextProps>({
 
 export default function Home() {
   const [data, setData] = useState<any>({ data: [], loader: false });
-
+  const { domain } = endPoints();
   useEffect(() => {
     const getData = async () => {
       try {
         setData((prev: any) => ({ ...prev, loader: true }));
-        const req = await axios.get("https://gallery-eta-five.vercel.app/api/getImages");
+        const req = await axios.get(`${domain}/api/getImages`);
         const data = req.data;
         setData((prev: any) => ({ data, loader: false }));
       } catch (e: any) {
