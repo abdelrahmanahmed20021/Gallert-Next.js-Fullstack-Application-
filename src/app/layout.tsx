@@ -1,12 +1,11 @@
-"use client";
-import "./globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-import { NextUIProvider } from "@nextui-org/react";
+import App from '@/components/App';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>{children}</NextUIProvider>
+        <App>
+         {children}
+        </App>
       </body>
     </html>
   );
