@@ -40,9 +40,9 @@ export default function ImageSlider({
         {children}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
-        <ModalContent className="sm:max-w-[500px] sm:rounded-md rounded-none max-w-[100%]  max-h-[500px] h-[500px] overflow-hidden">
+        <ModalContent className="sm:max-w-[500px] bg-gray-900 sm:rounded-md rounded-none max-w-[100%]   h-max p-10 overflow-hidden">
           {(onClose) => (
-            <Slider {...settings} ref={sliderRef}>
+            <Slider {...settings} ref={sliderRef} autoplay={true}>
               {data.data.length > 0 &&
                 data.data.map((data: any) => (
                   <ImagePreview

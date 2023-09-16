@@ -4,7 +4,6 @@ import "@uploadthing/react/styles.css";
 import React, { useContext, useRef, useState } from "react";
 
 import axios from "axios";
-import Image from "next/legacy/image";
 
 import { GState } from "@/app/page";
 import { cn } from "@/utils/cn";
@@ -122,12 +121,12 @@ export default function CreateImage() {
     <>
       <Button
         onPress={onOpen}
-        className="fixed bottom-5 right-5 font-[600] bg-slate-900 text-white"
+        className="fixed z-50 bottom-5 right-5 font-[600] bg-slate-900 text-white"
       >
         ADD Photo
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
+        <ModalContent className="rounded-br-none m-0  rounded-bl-none sm:rounded-md">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
@@ -143,27 +142,30 @@ export default function CreateImage() {
                   message="Photo Uploaded"
                   slug={"successfully"}
                 />
-                <label
-                  htmlFor="photoInput"
-                  className={cn(
-                    "bg-slate-400/5 rounded-md flex  max-h-[300px] justify-center overflow-auto items-center min-h-[100px] w-full h-[100%] border-dashed border-[1px] border-danger-900",
-                    !initState.imgValidationState &&
-                      "border-danger-400 bg-danger-500/10 text-danger-900",
-                    initState.img && "justify-start items-start"
-                  )}
-                >
-                  {!initState.img && "Select Photo"}
-                  {initState.img && (
-                    <Image
-                      src={initState.img}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  )}
-                </label>
+                <div className="flex justify-center items-center ">
+                  <label
+                    htmlFor="photoInput"
+                    className={cn(
+                      "bg-slate-400/5 rounded-md flex  max-h-[300px] justify-center overflow-auto items-center min-h-[100px] w-full h-[100%] border-dashed border-[1px] border-danger-900",
+                      !initState.imgValidationState &&
+                        "border-danger-400 bg-danger-500/10 text-danger-900",
+                      initState.img &&
+                        "justify-start items-start w-max border-none"
+                    )}
+                  >
+                    {!initState.img && "Select Photo"}
+                    {initState.img && (
+                      <img
+                        src={initState.img}
+                        style={{
+                          width: "100%",
+                          height: "200px",
+                          objectFit: "contain",
+                        }}
+                      />
+                    )}
+                  </label>
+                </div>
                 <input
                   type="file"
                   id="photoInput"

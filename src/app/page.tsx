@@ -5,6 +5,7 @@ import axios from "axios";
 
 import CreateImage from "@/components/CreateImage";
 import ImageCard from "@/components/ImageCard";
+import { Spinner } from "@nextui-org/react";
 
 type contextProps = {
   data: {
@@ -40,8 +41,16 @@ export default function Home() {
   return (
     <GState.Provider value={{ setData, data }}>
       <CreateImage />
-      {data.data.length > 0 && (
-        <div className="flex gap-[30px] p-5 flex-wrap">
+      {data.data.length > 0 ? (
+        <div
+          style={{
+            display: "grid",
+            justifyItems: "center",
+            gap: "30px",
+            padding: "30px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          }}
+        >
           {data.data.map((data: any, index: number) => (
             <ImageCard
               key={data.id}
@@ -51,6 +60,10 @@ export default function Home() {
               index={index}
             />
           ))}
+        </div>
+      ) : (
+        <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+          <Spinner />
         </div>
       )}
     </GState.Provider>

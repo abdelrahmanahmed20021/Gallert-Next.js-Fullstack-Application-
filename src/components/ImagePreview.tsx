@@ -17,11 +17,11 @@ export default function ImagePreview({
     <Card
       isFooterBlurred
       radius="lg"
-      className="border-none rounded-none  w-[100%] h-[400px]  bg-gray-900  transition-[all .3s ease] cursor-pointer"
+      className="border-none rounded-md overflow-hidden   w-[100%] h-[500px]  bg-gray-900  transition-[all .3s ease] cursor-pointer"
     >
       <Image
         alt={name}
-        className="object-cover w-[300px] h-[300px]"
+        className="object-cover"
         src={src}
         objectFit="cover"
         placeholder="blur"
