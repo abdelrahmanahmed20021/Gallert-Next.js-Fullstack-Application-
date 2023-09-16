@@ -1,6 +1,6 @@
 import prisma from '../../../../utils';
 
-export const revalidate = 60
+export const revalidate = 0
 
 
 export const GET = async () => {
