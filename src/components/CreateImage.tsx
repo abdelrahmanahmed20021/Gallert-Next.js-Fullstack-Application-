@@ -23,6 +23,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 
+import { endPoints } from '../../utils/endPoint';
 import Alret from './Alret';
 import CardPrview from './Cardprview';
 
@@ -51,6 +52,7 @@ export default function CreateImage() {
   const [initState, setState] = useState(initData);
   const photoNameInput = useRef<any>(null);
   const { setData } = useContext(GState);
+  const {domain} = endPoints()
   const { startUpload } = useUploadThing("mediaPost", {
     onUploadBegin: (e) => {},
     onClientUploadComplete(res) {
@@ -77,7 +79,7 @@ export default function CreateImage() {
       if (!uploadData) return;
       const { fileUrl, fileName } = uploadData[0];
       const { data } = await axios.post(
-        "https://gallery-eta-five.vercel.app/api/createImage",
+        `${domain}/api/createImage`,
         {
           src: fileUrl,
           name: initState.photoName,
