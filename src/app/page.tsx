@@ -31,7 +31,7 @@ export default function Home() {
     const getData = async () => {
       try {
         setData((prev: any) => ({ ...prev, loader: true }));
-        const req = await axios.get("https://gallery-iota-rose.vercel.app/api/getImages");
+        const req = await axios.get("https://gallery-eta-five.vercel.app/api/getImages");
         const data = req.data;
         setData((prev: any) => ({ data, loader: false }));
       } catch (e: any) {
