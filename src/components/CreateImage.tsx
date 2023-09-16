@@ -77,7 +77,7 @@ export default function CreateImage() {
       if (!uploadData) return;
       const { fileUrl, fileName } = uploadData[0];
       const { data } = await axios.post(
-        "https://gallery-iota-rose.vercel.app/api/createImage",
+        "https://gallery-eta-five.vercel.app/api/createImage",
         {
           src: fileUrl,
           name: initState.photoName,
